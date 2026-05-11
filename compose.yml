@@ -1,42 +1,42 @@
 services:
   app:
     build:
-      context: .Docker-files/app
-    images: ashutoshshre/vproapp
+      context: ./Docker-files/app
+    image: ashutoshshre/vproapp
     container_name: vproapp
     ports:
       - "8080:8080"
     volumes:
-      -vproapp_data: /usr/local/tomcat/webapps
+      - vproapp_data:/usr/local/tomcat/webapps
 
   db:
     build:
-      context: .Docker-files/db
+      context: ./Docker-files/db
     images: ashutoshshre/vprodb
     container_name: vprodb
     ports:
       - "3306:3306"
     volumes:
-      -vprodb_data: /var/lib/mysql
+      - vprodb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: vprodbpass
 
   web:
     build:
-      context: .Docker-files/web
-    images: ashutoshshre/vproweb
+      context: ./Docker-files/web
+    image: ashutoshshre/vproweb
     container_name: vproweb
     ports:
       - "80:80"
 
   memcache:
-    images: memcached:latest
+    image: memcached:latest
     container_name: vprocache01
     ports:
       - "11211:11211"
 
   rabitmq:
-    images: rabbitmq:latest
+    image: rabbitmq:latest
     container_name: vpromq01
     ports:
       - "5672:5672"
