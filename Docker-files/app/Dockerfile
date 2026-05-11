@@ -1,7 +1,7 @@
-FROM maven:3.9.9-eclipse-temurin-17 AS build_image
+FROM maven:3.9.9-eclipse-temurin-21 AS build_image
 
 WORKDIR /vprofile-project
-COPY . .
+RUN git clone -b containers https://github.com/Ashutosh-shre/myapp02.git
 RUN mvn install
 
 FROM tomcat:10-jdk21
